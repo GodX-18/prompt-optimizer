@@ -38,14 +38,18 @@ A elegant desktop application that helps you transform rough prompts into highly
 
 ### macOS
 
-1. Download `Prompt Optimizer_0.1.0_aarch64.dmg` from releases
+**Direct Download:** [Prompt Optimizer_0.1.0_aarch64.dmg](https://github.com/GodX-18/prompt-optimizer/releases/download/v0.1.0/Prompt%20Optimizer_0.1.0_aarch64.dmg)
+
+1. Download the DMG file above
 2. Open the DMG file
 3. Drag `Prompt Optimizer.app` to Applications
 4. Launch from Applications (first launch may require permission)
 
 ### Windows
 
-1. Download `Prompt Optimizer_0.1.0_x64.msi` from releases
+> Note: Windows build not yet available. Build from source or request a binary.
+
+1. Download the `.msi` installer from [releases](https://github.com/GodX-18/prompt-optimizer/releases)
 2. Run the installer
 3. Launch from Start Menu
 
