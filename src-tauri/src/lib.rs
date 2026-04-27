@@ -93,6 +93,7 @@ pub fn run() {
             delete_history_entry,
             clear_history,
             build_optimize_prompt,
+            check_for_update,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

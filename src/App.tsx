@@ -27,6 +27,14 @@ interface HistoryEntry {
   optimized: string;
 }
 
+interface UpdateInfo {
+  current_version: string;
+  latest_version: string;
+  download_url: string;
+  release_notes: string;
+  has_update: boolean;
+}
+
 type View = "main" | "settings" | "history";
 
 function App() {
@@ -39,6 +47,8 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [lang, setLang] = useState("en");
   const [hotkey, setHotkey] = useState("CmdOrCtrl+Shift+P");
+  const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
+  const [dismissedUpdate, setDismissedUpdate] = useState(false);
 
   useEffect(() => {
     const unlisten = listen("hotkey-triggered", async () => {
@@ -58,6 +68,21 @@ function App() {
       loadConfig();
     }
   }, [view]);
+
+  useEffect(() => {
+    checkForUpdate();
+  }, []);
+
+  const checkForUpdate = async () => {
+    try {
+      const info = await invoke<UpdateInfo>("check_for_update");
+      if (info.has_update && !dismissedUpdate) {
+        setUpdateInfo(info);
+      }
+    } catch (e) {
+      console.error("Failed to check for update:", e);
+    }
+  };
 
   const loadConfig = async () => {
     try {
@@ -208,6 +233,22 @@ function App() {
               </button>
             </div>
           </header>
+
+          {updateInfo && updateInfo.has_update && (
+            <div className="update-banner">
+              <span>
+                {lang === "zh" ? "发现新版本" : "Update available"}: v{updateInfo.latest_version}
+              </span>
+              <div className="update-actions">
+                <a href={updateInfo.download_url} target="_blank" rel="noopener noreferrer" className="update-download-btn">
+                  {lang === "zh" ? "下载" : "Download"}
+                </a>
+                <button className="update-dismiss-btn" onClick={() => setDismissedUpdate(true)}>
+                  ×
+                </button>
+              </div>
+            </div>
+          )}
 
           <main className="app-main">
             <div className="optimizer-container">

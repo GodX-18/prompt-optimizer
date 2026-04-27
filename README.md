@@ -15,6 +15,7 @@ A elegant desktop application that helps you transform rough prompts into highly
 - **History Tracking** - Browse and reuse your optimization history
 - **System Tray** - Runs quietly in the background
 - **Dark/Light Mode** - Adapts to your system theme
+- **Auto Update** - Automatically checks for new releases on GitHub
 
 ## Screenshots
 
