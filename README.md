@@ -38,7 +38,7 @@ A elegant desktop application that helps you transform rough prompts into highly
 
 ### macOS
 
-**Direct Download:** [Prompt Optimizer_0.1.0_aarch64.dmg](https://github.com/GodX-18/prompt-optimizer/releases/download/v0.1.0/Prompt%20Optimizer_0.1.0_aarch64.dmg)
+**Direct Download:** [Prompt Optimizer_0.1.0_aarch64.dmg](https://github.com/GodX-18/prompt-optimizer/releases/download/v0.1.0/Prompt.Optimizer_0.1.0_aarch64.dmg)
 
 1. Download the DMG file above
 2. Open the DMG file
