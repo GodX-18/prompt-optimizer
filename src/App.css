@@ -59,6 +59,30 @@
   gap: 0.5rem;
 }
 
+.check-update-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: inherit;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.check-update-btn:hover {
+  background: #f5f5f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .check-update-btn {
+    border-color: #444;
+  }
+
+  .check-update-btn:hover {
+    background: #333;
+  }
+}
+
 /* Update Banner */
 .update-banner {
   display: flex;

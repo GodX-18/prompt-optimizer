@@ -76,8 +76,9 @@ function App() {
   const checkForUpdate = async () => {
     try {
       const info = await invoke<UpdateInfo>("check_for_update");
-      if (info.has_update && !dismissedUpdate) {
-        setUpdateInfo(info);
+      setUpdateInfo(info);
+      if (info.has_update) {
+        setDismissedUpdate(false);
       }
     } catch (e) {
       console.error("Failed to check for update:", e);
@@ -228,13 +229,16 @@ function App() {
               <button className="settings-btn" onClick={() => setView("settings")}>
                 {t("settings", lang)}
               </button>
+              <button className="check-update-btn" onClick={checkForUpdate} title={lang === "zh" ? "检查更新" : "Check for Updates"}>
+                {updateInfo?.has_update ? "!" : "↻"}
+              </button>
               <button className="minimize-btn" onClick={handleMinimize}>
                 {t("minimizeToTray", lang)}
               </button>
             </div>
           </header>
 
-          {updateInfo && updateInfo.has_update && (
+          {updateInfo && updateInfo.has_update && !dismissedUpdate && (
             <div className="update-banner">
               <span>
                 {lang === "zh" ? "发现新版本" : "Update available"}: v{updateInfo.latest_version}
