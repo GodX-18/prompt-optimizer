@@ -20,6 +20,14 @@ interface SettingsProps {
   onBack: () => void;
 }
 
+interface UpdateInfo {
+  current_version: string;
+  latest_version: string;
+  download_url: string;
+  release_notes: string;
+  has_update: boolean;
+}
+
 export function Settings({ onBack }: SettingsProps) {
   const [config, setConfig] = useState<AppConfig | null>(null);
   const [loading, setLoading] = useState(true);
@@ -28,6 +36,8 @@ export function Settings({ onBack }: SettingsProps) {
   const [message, setMessage] = useState("");
   const [testResult, setTestResult] = useState<{ success: boolean; message: string } | null>(null);
   const [recording, setRecording] = useState(false);
+  const [checkingUpdate, setCheckingUpdate] = useState(false);
+  const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -206,6 +216,24 @@ export function Settings({ onBack }: SettingsProps) {
     setRecording(true);
   };
 
+  const checkForUpdate = async () => {
+    setCheckingUpdate(true);
+    try {
+      const info = await invoke<UpdateInfo>("check_for_update");
+      setUpdateInfo(info);
+    } catch (e) {
+      setUpdateInfo({
+        current_version: "unknown",
+        latest_version: "unknown",
+        download_url: "",
+        release_notes: "",
+        has_update: false,
+      });
+    } finally {
+      setCheckingUpdate(false);
+    }
+  };
+
   if (loading) {
     return <div className="loading">Loading settings...</div>;
   }
@@ -312,6 +340,41 @@ export function Settings({ onBack }: SettingsProps) {
             <option value="en">English</option>
             <option value="zh">中文</option>
           </select>
+        </div>
+      </section>
+
+      <section className="settings-section">
+        <h2>{config.lang === "zh" ? "关于" : "About"}</h2>
+        <div className="form-group">
+          <div className="update-check">
+            <span>
+              {config.lang === "zh" ? "当前版本" : "Current version"}: v{updateInfo?.current_version || "..."}
+            </span>
+            <button
+              className="test-btn"
+              onClick={checkForUpdate}
+              disabled={checkingUpdate}
+            >
+              {checkingUpdate
+                ? (config.lang === "zh" ? "检查中..." : "Checking...")
+                : (config.lang === "zh" ? "检查更新" : "Check for Updates")}
+            </button>
+          </div>
+          {updateInfo && (
+            <div className={`test-result ${updateInfo.has_update ? "success" : ""}`}>
+              {updateInfo.has_update ? (
+                <>
+                  {config.lang === "zh" ? "发现新版本" : "New version available"}: v{updateInfo.latest_version}
+                  <br />
+                  <a href={updateInfo.download_url} target="_blank" rel="noopener noreferrer">
+                    {config.lang === "zh" ? "下载新版本" : "Download new version"}
+                  </a>
+                </>
+              ) : (
+                config.lang === "zh" ? "已是最新版本" : "You're up to date!"
+              )}
+            </div>
+          )}
         </div>
       </section>
 

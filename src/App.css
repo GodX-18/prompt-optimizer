@@ -133,6 +133,25 @@
   opacity: 1;
 }
 
+/* Settings Update Check */
+.update-check {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.update-check span {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .update-check span {
+    color: #aaa;
+  }
+}
+
 .app-main {
   flex: 1;
   display: flex;

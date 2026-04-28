@@ -229,9 +229,6 @@ function App() {
               <button className="settings-btn" onClick={() => setView("settings")}>
                 {t("settings", lang)}
               </button>
-              <button className="check-update-btn" onClick={checkForUpdate} title={lang === "zh" ? "检查更新" : "Check for Updates"}>
-                {updateInfo?.has_update ? "!" : "↻"}
-              </button>
               <button className="minimize-btn" onClick={handleMinimize}>
                 {t("minimizeToTray", lang)}
               </button>
