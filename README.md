@@ -4,7 +4,7 @@ A elegant desktop application that helps you transform rough prompts into highly
 
 ![Prompt Optimizer](https://img.shields.io/badge/Platform-macOS%20%7C%20Windows-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![Version](https://img.shields.io/badge/Version-0.1.0-orange)
+![Version](https://img.shields.io/badge/Version-0.1.1-orange)
 
 ## Features
 
@@ -39,7 +39,7 @@ A elegant desktop application that helps you transform rough prompts into highly
 
 ### macOS
 
-**Direct Download:** [Prompt Optimizer_0.1.0_aarch64.dmg](https://github.com/GodX-18/prompt-optimizer/releases/download/v0.1.0/Prompt.Optimizer_0.1.0_aarch64.dmg)
+**Direct Download:** [Prompt Optimizer_0.1.1_aarch64.dmg](https://github.com/GodX-18/prompt-optimizer/releases/download/v0.1.1/Prompt.Optimizer_0.1.1_aarch64.dmg)
 
 1. Download the DMG file above
 2. Open the DMG file
